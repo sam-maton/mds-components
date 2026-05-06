@@ -1,0 +1,9 @@
+<button
+  class="mds-button"
+  [class.mds-button--filled]="variant() === 'filled'"
+  [class.mds-button--outlined]="variant() === 'outlined'"
+  [class.mds-button--text]="variant() === 'text'"
+  [disabled]="disabled() || null"
+>
+  <ng-content />
+</button>

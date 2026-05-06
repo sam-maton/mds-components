@@ -1,0 +1,107 @@
+// Import all MDS design system tokens (primitive + semantic)
+@use "@smaton/mds-styles/scss" as mds;
+
+// ─── Values not currently in mds-styles (candidates for future design tokens)
+// These should be fed back into the mds-styles library:
+//
+//   $button-font-size:       0.875rem   (14px)  — body small text size
+//   $button-font-weight:     500                — medium weight for labels
+//   $button-line-height:     1.5                — comfortable reading
+//   $button-letter-spacing:  0.01em             — subtle tracking for labels
+//   $button-padding-y:       0.5rem    (8px)
+//   $button-padding-x:       1rem      (16px)
+//   $button-min-width:       5rem      (80px)
+//   $button-transition:      150ms ease          — fast, snappy interaction
+// ────────────────────────────────────────────────────────────────────────────
+
+.mds-button {
+  // Layout
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  // Typography (not in mds-styles — see note above)
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+
+  // Spacing (not in mds-styles — see note above)
+  padding: 0.5rem 1rem;
+  min-width: 5rem;
+
+  // Shape
+  border-radius: mds.$mds-radius-sm;
+  border: 2px solid transparent;
+
+  // Behaviour
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+
+  // Focus ring
+  &:focus-visible {
+    outline: 2px solid mds.$mds-color-brand-primary;
+    outline-offset: 2px;
+  }
+
+  // Disabled state
+  &:disabled {
+    cursor: not-allowed;
+    opacity: mds.$mds-opacity-300; // 0.4
+  }
+
+  // ── Filled variant ─────────────────────────────────────────────────────────
+  &--filled {
+    background-color: mds.$mds-color-brand-primary;
+    border-color: mds.$mds-color-brand-primary;
+    color: mds.$mds-color-text-inverse;
+    box-shadow: mds.$mds-shadow-100;
+
+    &:hover:not(:disabled) {
+      background-color: mds.$mds-color-brand-primary-subtle;
+      border-color: mds.$mds-color-brand-primary-subtle;
+      box-shadow: mds.$mds-shadow-200;
+    }
+
+    &:active:not(:disabled) {
+      background-color: mds.$mds-color-brand-primary-more-subtle;
+      border-color: mds.$mds-color-brand-primary-more-subtle;
+      box-shadow: mds.$mds-shadow-100;
+    }
+  }
+
+  // ── Outlined variant ───────────────────────────────────────────────────────
+  &--outlined {
+    background-color: transparent;
+    border-color: mds.$mds-color-brand-primary;
+    color: mds.$mds-color-brand-primary;
+
+    &:hover:not(:disabled) {
+      // Use the lightest brand blue (primitive token) for a subtle tint
+      background-color: mds.$mds-blue-100;
+    }
+
+    &:active:not(:disabled) {
+      background-color: mds.$mds-blue-200;
+    }
+  }
+
+  // ── Text variant ───────────────────────────────────────────────────────────
+  &--text {
+    background-color: transparent;
+    border-color: transparent;
+    color: mds.$mds-color-brand-primary;
+
+    &:hover:not(:disabled) {
+      background-color: mds.$mds-blue-100;
+    }
+
+    &:active:not(:disabled) {
+      background-color: mds.$mds-blue-200;
+    }
+  }
+}
